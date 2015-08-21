@@ -1,10 +1,21 @@
+Ping nodes
 ansible all -m ping -u usuario -i nodes
-ansible all -u usuario -i nodes -a "/bin/echo Hola" --ask-pass
-ansible all -u usuario -i nodes -a "/sbin/halt -p" --sudo -K
-ansible all -u usuario -i nodes -a "/usr/bin/id" --sudo -K
 
+Sent echo "Hola" to nodes typing password
+ansible all -u usuario -i nodes -a "/bin/echo Hola" --ask-pass
+
+Shutdown nodes typing sudo password
+ansible all -u usuario -i nodes -a "/sbin/halt -p" --sudo -K
+
+Run  vboxguessadds.yml  playbook in Nodes typing sudo password
 ansible-playbook -i nodes.txt Ansible/vboxguessadds.yml --ask-become-pass
+
+Run  osmaster.yml  playbook in Nodes typing user and sudo passwords
 ansible-playbook -i $HOME/nodes.txt --verbose osmaster.yml --ask-become-pass -u usuario --ask-pass
 
---lists-tasks= Listar tareas a correr
---list-nodes= Listar nodos a usar
+ansible-playbook nice Options:
+Show tasks to run:
+--lists-tasks
+
+Show affected nodes:
+--list-nodes
