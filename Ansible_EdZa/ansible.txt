@@ -1,0 +1,10 @@
+ansible all -m ping -u usuario -i nodes
+ansible all -u usuario -i nodes -a "/bin/echo Hola" --ask-pass
+ansible all -u usuario -i nodes -a "/sbin/halt -p" --sudo -K
+ansible all -u usuario -i nodes -a "/usr/bin/id" --sudo -K
+
+ansible-playbook -i nodes.txt Ansible/vboxguessadds.yml --ask-become-pass
+ansible-playbook -i $HOME/nodes.txt --verbose osmaster.yml --ask-become-pass -u usuario --ask-pass
+
+--lists-tasks= Listar tareas a correr
+--list-nodes= Listar nodos a usar

@@ -1,0 +1,6 @@
+---
+ # file: roles/vboxguess/handlers/main.yml
+ - name: reboot system
+   command: /sbin/reboot
+   become: yes
+   become_method: sudo

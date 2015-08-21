@@ -1,0 +1,17 @@
+---
+# file: roles/osmain/tasks/01_start.yml
+
+ - name: copy hosts
+   become: yes
+   become_method: sudo
+   copy:
+     src=hosts
+     dest=/etc
+     owner=root
+     mode=644
+
+ - name: install git
+   apt: name=git state=present
+   become: yes
+   become_method: sudo
+

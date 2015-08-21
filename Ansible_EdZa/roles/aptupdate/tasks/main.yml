@@ -1,0 +1,21 @@
+---
+# file: roles/vboxguess/tasks/main.yml
+
+ - name: clear apt cache
+   shell: /bin/rm -f *.deb
+   become: yes
+   become_method: sudo
+   args:
+     chdir: /var/cache/apt/archives
+
+ - name: clear apt lists
+   shell: /bin/rm -f *-en *_Sources *_Packages *_Release
+   become: yes
+   become_method: sudo
+   args:
+     chdir: /var/lib/apt/lists
+
+ - name: update cache
+   apt: update_cache=yes
+   become: yes
+   become_method: sudo

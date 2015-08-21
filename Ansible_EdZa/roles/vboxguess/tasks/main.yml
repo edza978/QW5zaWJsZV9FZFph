@@ -1,0 +1,35 @@
+---
+# file: roles/vboxguess/tasks/main.yml
+
+ - name: install linux-headers-3
+   apt: name=linux-headers-3.13.0-59-generic state=present
+   become: yes
+   become_method: sudo
+   notify:
+     - reboot system
+
+ - name: install build-essential
+   apt: name=build-essential state=present
+   become: yes
+   become_method: sudo
+   notify:
+     - reboot system
+
+ - name: copy  VBoxLinux install
+   copy:
+     src=VBoxLinuxAdditions.run
+     dest=/home/usuario
+     owner=usuario
+     mode=755
+
+ - name: run VBoxLinux
+   shell: /home/usuario/VBoxLinuxAdditions.run
+   register: command_result
+   failed_when: "'FAILED' in command_result.stderr"
+   become: yes
+   become_method: sudo
+
+ - name: add Usuario to vboxsf
+   user: name=usuario groups=vboxsf append=yes
+   become: yes
+   become_method: sudo

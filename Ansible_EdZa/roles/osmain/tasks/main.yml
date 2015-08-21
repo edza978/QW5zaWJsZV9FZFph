@@ -1,0 +1,5 @@
+---
+# file: roles/osmain/tasks/main.yml
+- include: 01_start.yml
+- include: 02_stack.yml
+- include: 03_devstack.yml

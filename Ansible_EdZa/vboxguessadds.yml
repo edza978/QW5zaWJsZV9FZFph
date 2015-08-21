@@ -1,0 +1,11 @@
+---
+ - hosts: osmaster
+   remote_user: usuario
+   tasks:
+   - name: install linux-headers-3 and build-essential
+     apt: name=linux-headers-3.13.0-59-generic update_cache=yes state=present
+     apt: name=build-essential state=installed
+     become: yes
+     become_method: sudo
+     notify:
+     - reboot system

@@ -1,0 +1,8 @@
+---
+# file: osmaster.yml
+- hosts: osmaster
+  roles:
+  - aptupdate
+  - vboxguess
+  - osmain
+  - osmaster

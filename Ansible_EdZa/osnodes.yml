@@ -1,0 +1,8 @@
+---
+# file: osnodes.yml
+- hosts: osnodes
+  roles:
+  - aptupdate
+  - vboxguess
+  - osmain
+  - osnodes

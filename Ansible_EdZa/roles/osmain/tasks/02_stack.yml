@@ -1,0 +1,52 @@
+---
+# file: roles/osmain/tasks/02_stack.yml
+
+ - name: create  stack group
+   become: yes
+   become_method: sudo
+   group:
+     name=stack
+     state=present
+
+ - name: add stack user
+   become: yes
+   become_method: sudo
+   user:
+     name=stack
+     home=/opt/stack
+     shell=/bin/bash
+     groups=stack,vboxsf
+     password=$6$ZFABu6UJ$QXqjQn5Z6vJZ0X6uqjGjzQGESLZ6Kg7FL5cH6.4HjMPjMLu9gwyq23OrN.6T1WLnTrNRmqHu7mpZYeVv98OGu/
+     append=yes
+
+ - name: add stack user to sudoers
+   shell: '/bin/echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers'
+   become: yes
+   become_method: sudo
+
+ - name: config stask's user ssh
+   become: yes
+   become_method: sudo
+   file:
+     path=/opt/stack/.ssh
+     state=directory
+     mode=0700
+     owner=stack
+
+ - name: copy  Authorized_keys
+   become: yes
+   become_method: sudo
+   copy:
+     src=authorized_keys
+     dest=/opt/stack/.ssh
+     owner=stack
+     mode=644
+
+ - name: copy  Known_hosts
+   become: yes
+   become_method: sudo
+   copy:
+     src=known_hosts
+     dest=/opt/stack/.ssh/known_hosts
+     owner=stack
+     mode=644

@@ -1,0 +1,18 @@
+---
+# file: roles/osmaster/tasks/03_devstack.yml
+
+ - name: git clone devstack
+   become: yes
+   become_user: stack
+   git:
+      repo='https://git.openstack.org/openstack-dev/devstack'
+      dest='/opt/stack/devstack'
+
+ - name: copy  local.sh
+   become: yes
+   become_method: sudo
+   copy:
+     src=local.sh
+     dest=/opt/stack/devstack
+     owner=stack
+     mode=744
