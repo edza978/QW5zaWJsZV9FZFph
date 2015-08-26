@@ -15,3 +15,11 @@
    become: yes
    become_method: sudo
 
+ - name: append local DNS to resolv.conf
+   lineinfile:
+    dest=/etc/resolv.conf
+    regexp="^nameserver="
+    line="nameserver {{local_dns}}"
+   become: yes
+   become_method: sudo
+

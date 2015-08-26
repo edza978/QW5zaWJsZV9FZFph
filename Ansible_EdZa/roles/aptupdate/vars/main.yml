@@ -1,0 +1,4 @@
+---
+# file: roles/osmaster/vars/main.yml
+proxy_ip: 192.168.56.80
+proxy_port: 3128

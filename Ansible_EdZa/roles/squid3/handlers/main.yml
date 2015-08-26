@@ -1,0 +1,8 @@
+---
+ # file: roles/squid3/handlers/main.yml
+ - name: restart squid3
+   become: yes
+   become_method: sudo
+   service:
+     name=squid3
+     state=restarted

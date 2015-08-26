@@ -64,5 +64,5 @@ if is_service_enabled nova; then
     # Add tcp/22 and icmp to default security group
     nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
     nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
-    for i in `seq 2 10`; do /opt/stack/nova/bin/nova-manage fixed reserve 10.10.1.$i; done
+    for i in `seq 2 10`; do /opt/stack/nova/bin/nova-manage fixed reserve 10.0.0.1.$i; done
 fi

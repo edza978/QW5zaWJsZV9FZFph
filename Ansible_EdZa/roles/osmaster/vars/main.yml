@@ -1,3 +1,0 @@
----
-# file: roles/osmaster/vars/main.yml
-master: 192.168.56.90

@@ -1,0 +1,18 @@
+---
+# file: roles/squid3/tasks/main.yml
+
+ - name: install Squid3
+   apt: name=squid3 state=present
+   become: yes
+   become_method: sudo
+
+ - name: copy  config
+   become: yes
+   become_method: sudo
+   notify:
+     - restart squid3
+   copy:
+     src=squid3/
+     dest=/etc/squid3
+     owner=root
+     mode=644

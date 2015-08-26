@@ -1,6 +1,8 @@
 ---
 # file: roles/vboxguess/tasks/main.yml
 
+ - include: 01_proxy.yml
+
  - name: clear apt cache
    shell: /bin/rm -f *.deb
    become: yes
