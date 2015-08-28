@@ -1,0 +1,9 @@
+---
+# file: roles/osmaster/vars/main.yml
+master: 192.168.56.90
+floating: 192.168.56.1/24
+floating_ini: 192.168.56.100
+floating_end: 192.168.56.200
+fixed: 10.0.0.0/24
+public_gw: 192.168.56.1
+public_eth: eth1

@@ -15,4 +15,4 @@
      src=local.sh
      dest=/opt/stack/devstack
      owner=stack
-     mode=744
+     mode=0744

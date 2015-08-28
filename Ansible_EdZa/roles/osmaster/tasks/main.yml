@@ -1,0 +1,25 @@
+---
+# file: roles/osmaster/tasks/main.yml
+
+ - name: copy  local.conf
+   become: yes
+   become_method: sudo
+   template:
+     src=local.conf.j2
+     dest=/opt/stack/devstack/local.conf
+     owner=stack
+     mode=644
+
+ - name: run stack.sh
+   become: yes
+   become_user: stack
+   command: /opt/stack/devstack/stack.sh
+   args:
+     chdir: /opt/stack/devstack
+   register: command_result
+   failed_when: "'Error' in command_result.stderr"
+
+# Start glance registry:
+#   /usr/local/bin/glance-registry --config-file=/etc/glance/glance-registry.conf
+# Start Glance api
+#  /usr/local/bin/glance-api --config-file=/etc/glance/glance-api.conf

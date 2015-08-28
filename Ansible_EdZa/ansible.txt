@@ -1,3 +1,6 @@
+Get osmaster-s full information
+ansible osmaster -u usuario -i $HOME/nodes.txt --ask-pass  -m setup
+
 Ping nodes
 ansible all -m ping -u usuario -i nodes
 

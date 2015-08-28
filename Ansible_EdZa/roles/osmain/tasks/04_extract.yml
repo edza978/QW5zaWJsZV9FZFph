@@ -1,0 +1,47 @@
+---
+# file: roles/osmasin/tasks/04_extract.yml
+
+ - name: extract cinder
+   become: yes
+   become_method: sudo
+   unarchive:
+    src=cinder.tar.bz2
+    dest=/opt/stack
+    owner=stack
+    group=stack
+
+ - name: extract glance
+   become: yes
+   become_method: sudo
+   unarchive:
+    src=glance.tar.bz2
+    dest=/opt/stack
+    owner=stack
+    group=stack
+
+ - name: extract nova
+   become: yes
+   become_method: sudo
+   unarchive:
+    src=nova.tar.bz2
+    dest=/opt/stack
+    owner=stack
+    group=stack
+
+ - name: extract noVNC
+   become: yes
+   become_method: sudo
+   unarchive:
+    src=noVNC.tar.bz2
+    dest=/opt/stack
+    owner=stack
+    group=stack
+
+ - name: extract requirements
+   become: yes
+   become_method: sudo
+   unarchive:
+    src=requirements.tar.bz2
+    dest=/opt/stack
+    owner=stack
+    group=stack
